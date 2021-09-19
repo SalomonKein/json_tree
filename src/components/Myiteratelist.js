@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Context } from "../context";
+import React, {useContext} from "react";
+import {Context} from "../context";
 import createJSONTree from "../resource/createJSONTree";
 import Childpoint from "./Childpoint";
 import cn from "./Myiteratelist.module.css";
@@ -39,7 +39,21 @@ export default function Myiteratelist() {
     },
     {
       name: "Antarctica",
-      children: ["456"],
+      children: [
+        {
+          name: "Buve Island",
+          children: [
+            {
+              name: "Language",
+              children: [
+                {
+                  name: "Norge",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "Asia",
@@ -61,7 +75,21 @@ export default function Myiteratelist() {
     },
     {
       name: "Australia",
-      children: ["456"],
+      children: [
+        {
+          name: "Australia",
+          children: [
+            {
+              name: "Language",
+              children: [
+                {
+                  name: "English",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "Europe",
@@ -83,18 +111,45 @@ export default function Myiteratelist() {
     },
     {
       name: "North America",
-      children: ["456"],
+      children: [
+        {
+          name: "Canada",
+          children: [
+            {
+              name: "Language",
+              children: [
+                {
+                  name: "English/Franch",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "South America",
-      children: ["456"],
+      children: [
+        {
+          name: "Argentina",
+          children: [
+            {
+              name: "Language",
+              children: [
+                {
+                  name: "Spain",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   ];
 
   // let arr=createJSONTree(4)(6);
-  console.log(JSON.stringify(createJSONTree(4)(6)));
 
-  const {collapseAll} = useContext(Context)  
+  const {collapseAll} = useContext(Context);
 
   return (
     <div className={"container"}>
@@ -102,14 +157,15 @@ export default function Myiteratelist() {
         return arr.map((e) =>
           e.children ? (
             <div key={Date.now() * Math.random()} className={cn.firstlvl}>
-              <Childpoint 
-                element = {e.name}                 
-              />               
+              <Childpoint element={e.name} />
               <span className={cn.thirdlvl}>{iterate(e.children)}</span>
             </div>
           ) : e.name ? (
-            <div key={Date.now() * Math.random()} className={cn.lastlvl}
-            onClick={collapseAll}>
+            <div
+              key={Date.now() * Math.random()}
+              className={cn.lastlvl}
+              onClick={collapseAll}
+            >
               {e.name}
             </div>
           ) : null
