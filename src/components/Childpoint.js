@@ -1,20 +1,15 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import cn from "./Childpoint.module.css";
 import whithCollapse from "../hoc/withCollapse";
-import { Context } from "../context";
-
-
+import {Context} from "../context";
 
 function Childpoint(props) {
-  const {isCollapse} = useContext(Context)
+  const {isCollapse} = useContext(Context);
   return (
-    <span 
-    className={
-      isCollapse ?
-      `${cn.secondlvl}  ${cn.hide}` : 
-      `${cn.secondlvl}`
-    } 
-    onClick={props.onClick}>
+    <span
+      className={isCollapse ? `${cn.secondlvl}  ${cn.hide}` : `${cn.secondlvl}`}
+      onClick={props.onClick}
+    >
       {props.element}
     </span>
   );
