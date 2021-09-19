@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Myiteratelist from './components/Myiteratelist';
+import { Context } from './context';
+
+
+
+// const isCollapse = true;
+
+
 
 function App() {
+const [isCollapse, setIsCollapse]=useState(true)
+
+function collapseAll(){
+isCollapse ? setIsCollapse(false) : setIsCollapse(true)
+}
+
+
+
   return (
+    <Context.Provider
+    value={{collapseAll, isCollapse}}
+    >
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Myiteratelist/>
     </div>
+    </Context.Provider>
   );
 }
 

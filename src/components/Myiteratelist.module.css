@@ -1,0 +1,49 @@
+.firstlvl{ 
+  position: relative; 
+  height: -30px; 
+  
+}
+
+.firstlvl::before{
+  content: "";
+  display: block;
+  border-left: dashed rgb(72, 216, 216) 1px;  
+  height: 100%;  
+  margin-left: 30px;
+  position: absolute;
+}
+
+.lastlvl{
+  cursor: pointer;
+  border: solid rgb(33, 37, 33) 1px;
+  border-radius: 5px;
+  background-color: rgb(247, 240, 240);
+  width: 100%;
+  margin-top: 10px ;
+  margin-bottom: 50px ;
+  margin-left: 30px;
+  position: relative;
+  padding: 5px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.lastlvl::before{
+  content: "";
+  display: block;
+  width: 20px;
+  border-top: solid rgb(113, 177, 219) 1px;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+}
+.thirdlvl{ 
+  display: block;
+  width: 250px;
+  margin: 20px;
+}
+
+.hide .thirdlvl {
+  display: none;
+}

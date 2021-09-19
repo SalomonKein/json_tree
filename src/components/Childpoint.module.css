@@ -1,0 +1,46 @@
+.secondlvl{
+    cursor: pointer;
+    border: solid rgb(33, 37, 33) 1px;
+    border-radius: 5px;
+    background-color: rgb(247, 240, 240);
+    display: block;
+    width: 250px;
+    margin: 30px;
+    position: relative;
+    padding: 5px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+  .secondlvl::before{
+    content: "";
+    display: block;
+    width: 20px;
+    border-top: solid rgb(113, 177, 219) 1px;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+  }
+  
+  
+  .hide+span {
+    display: none;
+  }
+  
+  .hide::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    right: 20px;
+    transform: rotate(-45deg);
+    width: 5px;
+    height: 5px;
+    border-left: solid gray 1px;
+    border-bottom: solid gray 1px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+  }
