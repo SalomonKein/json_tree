@@ -1,176 +1,43 @@
 import React, {useContext} from "react";
 import {Context} from "../context";
-import createJSONTree from "../resource/createJSONTree";
+// import arrayForStart from "../resource/arrayForStart";
+// import createJSONTree from "../resource/createJSONTree";
 import Childpoint from "./Childpoint";
 import cn from "./Myiteratelist.module.css";
 
 export default function Myiteratelist() {
-  let arr = [
-    {
-      name: "Africa",
-      children: [
-        {
-          name: "Egipt",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "Arabian",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: "RSA",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "English",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "Antarctica",
-      children: [
-        {
-          name: "Buve Island",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "Norge",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "Asia",
-      children: [
-        {
-          name: "Qatar",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "Arabian",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "Australia",
-      children: [
-        {
-          name: "Australia",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "English",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "Europe",
-      children: [
-        {
-          name: "Great Britan",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "English",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "North America",
-      children: [
-        {
-          name: "Canada",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "English/Franch",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "South America",
-      children: [
-        {
-          name: "Argentina",
-          children: [
-            {
-              name: "Language",
-              children: [
-                {
-                  name: "Spain",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  const {collapseAll, data} = useContext(Context);
 
-  // let arr=createJSONTree(4)(6);
+  //  let array = arrayForStart(); // - hand mock array, use with import
 
-  const {collapseAll} = useContext(Context);
+  // const array = createJSONTree(5, 3); // - custom generated array, use with import
 
-  return (
-    <div className={"container"}>
-      {(function iterate(arr) {
-        return arr.map((e) =>
-          e.children ? (
-            <div key={Date.now() * Math.random()} className={cn.firstlvl}>
-              <Childpoint element={e.name} />
-              <span className={cn.thirdlvl}>{iterate(e.children)}</span>
-            </div>
-          ) : e.name ? (
-            <div
-              key={Date.now() * Math.random()}
-              className={cn.lastlvl}
-              onClick={collapseAll}
-            >
-              {e.name}
-            </div>
-          ) : null
-        );
-      })(arr)}
-    </div>
-  );
+  let array = data.continents; // - array from query
+
+  function iterate(arr) {
+    return arr.map((e) => {
+      return Object.keys(e).map((key) => {
+        return e[key] instanceof Array ? (
+          <div key={Date.now() * Math.random()} className={cn.firstlvl}>
+            <Childpoint element={e.name} />
+            <span className={cn.thirdlvl}>{iterate(e[key])}</span>
+          </div>
+        ) : Object.keys(e).length <= 1 ? (
+          Object.keys(e).map((key) => {
+            return typeof e[key] === "object" ? null : (
+              <div
+                key={Date.now() * Math.random()}
+                className={cn.lastlvl}
+                onClick={collapseAll}
+              >
+                {e.name}
+              </div>
+            );
+          })
+        ) : null;
+      });
+    });
+  }
+
+  return <div className={"container"}>{iterate(array)}</div>;
 }

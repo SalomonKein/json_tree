@@ -5,6 +5,7 @@ import {Context} from "../context";
 
 function Childpoint(props) {
   const {isCollapse} = useContext(Context);
+
   return (
     <span
       className={isCollapse ? `${cn.secondlvl}  ${cn.hide}` : `${cn.secondlvl}`}
@@ -15,5 +16,4 @@ function Childpoint(props) {
   );
 }
 
-// export default Childpoint;
 export default whithCollapse(Childpoint);
